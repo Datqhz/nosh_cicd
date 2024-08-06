@@ -20,7 +20,7 @@ pipeline{
                         "docker rm -f api\n"+
                         "docker rmi ${DOCKER_USERNAME}/nosh_now_api\n"+
                         "docker-compose up -d"
-                        sshagent (credentials: ['your-credential-id']) {
+                        sshagent (credentials: ['vm-key']) {
                             sh """
                                 ssh -o StrictHostKeyChecking=no root@52.63.154.28 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
                             """
