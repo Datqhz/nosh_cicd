@@ -17,8 +17,6 @@ pipeline{
                         "TOKEN_ISSUER=${TOKEN_ISSUER}\n"+
                         "TOKEN_AUDIENCE=${TOKEN_AUDIENCE}\n" +
                         "TOKEN_KEY=${TOKEN_KEY}\n" +
-                        "docker rm -f api\n"+
-                        "docker rmi ${DOCKER_USERNAME}/nosh_now_api\n"+
                         "docker-compose up -d"
                         sshagent (credentials: ['vm-key']) {
                             sh """
@@ -31,3 +29,6 @@ pipeline{
         
     }
 }
+
+                        // "docker rm -f api\n"+
+                        // "docker rmi ${DOCKER_USERNAME}/nosh_now_api\n"+
