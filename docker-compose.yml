@@ -1,5 +1,9 @@
 version: '3.8'
 
+
+volumes:
+  mydb:
+
 services:
   db:
     image: mysql
@@ -39,6 +43,3 @@ services:
       - ISSUER=${TOKEN_ISSUER}
       - AUDIENCE=${TOKEN_AUDIENCE}
       - KEY=${TOKEN_KEY}
-
-volumes:
-  mydb:
