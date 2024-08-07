@@ -20,6 +20,7 @@ pipeline{
                         // "git clone https://github.com/Datqhz/nosh_cicd.git\n"+
                         "cd nosh_cicd\n" +
                         "git pull\n"+
+                        "docker image pull dat1edf/nosh_now_api"
                         "docker compose up -d"
                         sshagent (credentials: ['vm-key']) {
                             sh """
