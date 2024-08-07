@@ -19,7 +19,7 @@ pipeline{
                         "TOKEN_KEY=${TOKEN_KEY}\n" +
                         "git clone https://github.com/Datqhz/nosh_cicd.git\n"+
                         "cd nosh_cicd\n" +
-                        "docker-compose up -d"
+                        "docker compose up -d"
                         sshagent (credentials: ['vm-key']) {
                             sh """
                                 ssh -o StrictHostKeyChecking=no -i vm-key root@52.63.154.28 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"

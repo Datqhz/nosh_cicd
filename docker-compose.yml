@@ -1,9 +1,6 @@
 version: '3.8'
 
 
-volumes:
-  mydb:
-
 services:
   db:
     image: mysql
