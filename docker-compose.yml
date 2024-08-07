@@ -26,10 +26,6 @@ services:
     entrypoint: [ "dotnet", "ef", "database", "update" ]
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - .:/src
-      - ~/.nuget/packages:/root/.nuget/packages
-      - ~/.dotnet/tools:/root/.dotnet/tools
     working_dir: /app
     depends_on:
       - db

@@ -12,16 +12,17 @@ pipeline{
             steps{
                 sh "echo 'Deploying and cleaning'"
                     script {
-                        def deploying = "#!/bin/bash\n" + 
-                        "DOCKER_USERNAME=${DOCKER_USERNAME}\n" +
-                        "TOKEN_ISSUER=${TOKEN_ISSUER}\n"+
-                        "TOKEN_AUDIENCE=${TOKEN_AUDIENCE}\n" +
-                        "TOKEN_KEY=${TOKEN_KEY}\n" +
-                        // "git clone https://github.com/Datqhz/nosh_cicd.git\n"+
-                        "cd nosh_cicd\n" +
-                        "git pull\n"+
-                        "docker image pull dat1edf/nosh_now_apis\n" +
-                        "docker compose up -d"
+                        def deploying = """
+                        #!/bin/bash
+                        export DOCKER_USERNAME=${DOCKER_USERNAME}
+                        export TOKEN_ISSUER=${TOKEN_ISSUER}
+                        export TOKEN_AUDIENCE=${TOKEN_AUDIENCE}
+                        export TOKEN_KEY=${TOKEN_KEY}
+                        cd nosh_cicd
+                        git pull
+                        docker image pull ${DOCKER_USERNAME}/nosh_now_apis
+                        docker compose up -d
+                        """
                         sshagent (credentials: ['vm-key']) {
                             sh """
                                 ssh -o StrictHostKeyChecking=no -i vm-key root@52.63.154.28 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
