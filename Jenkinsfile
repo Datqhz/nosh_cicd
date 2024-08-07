@@ -24,7 +24,7 @@ pipeline{
                         """
                         sshagent (credentials: ['vm-key']) {
                             sh """
-                                ssh -o StrictHostKeyChecking=no -i vm-key root@3.27.63.124 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
+                                ssh -o StrictHostKeyChecking=no -i vm-key root@3.27.63.123 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
                             """
                         }
                     }
