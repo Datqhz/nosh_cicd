@@ -6,7 +6,7 @@ volumes:
 
 services:
   db:
-    image: mysql
+    image: mysql:latest
     container_name: db
     ports:
       - "3306:3306"
@@ -21,7 +21,7 @@ services:
       timeout: 10s
       retries: 5
   migrate:
-    image: ${DOCKER_USERNAME}/nosh_now_apis
+    image: dat1edf/nosh_now_apis
     entrypoint: [ "dotnet", "ef", "database", "update" ]
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -35,7 +35,7 @@ services:
   api:
     ports:
       - "5000:80"
-    image: ${DOCKER_USERNAME}/nosh_now_apis
+    image: dat1edf/nosh_now_apis
     depends_on:
       - migrate
     environment:
