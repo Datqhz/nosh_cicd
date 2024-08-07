@@ -17,8 +17,9 @@ pipeline{
                         "TOKEN_ISSUER=${TOKEN_ISSUER}\n"+
                         "TOKEN_AUDIENCE=${TOKEN_AUDIENCE}\n" +
                         "TOKEN_KEY=${TOKEN_KEY}\n" +
-                        "git clone https://github.com/Datqhz/nosh_cicd.git\n"+
+                        // "git clone https://github.com/Datqhz/nosh_cicd.git\n"+
                         "cd nosh_cicd\n" +
+                        "git pull"+
                         "docker compose up -d"
                         sshagent (credentials: ['vm-key']) {
                             sh """

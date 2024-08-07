@@ -21,6 +21,7 @@ services:
       timeout: 10s
       retries: 5
   migrate:
+    container_name: migrate
     image: dat1edf/nosh_now_apis
     entrypoint: [ "dotnet", "ef", "database", "update" ]
     environment:
@@ -33,6 +34,7 @@ services:
     depends_on:
       - db
   api:
+    container_name: api
     ports:
       - "5000:80"
     image: dat1edf/nosh_now_apis
