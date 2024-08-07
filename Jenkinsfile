@@ -18,13 +18,14 @@ pipeline{
                         export TOKEN_ISSUER=${TOKEN_ISSUER}
                         export TOKEN_AUDIENCE=${TOKEN_AUDIENCE}
                         export TOKEN_KEY=${TOKEN_KEY}
-                        git clone https://github.com/Datqhz/nosh_cicd.git
                         cd nosh_cicd
+                        git pull
+                        docker image pull ${DOCKER_USERNAME}/nosh_now_apis
                         docker compose up -d
                         """
                         sshagent (credentials: ['vm-key']) {
                             sh """
-                                ssh -o StrictHostKeyChecking=no -i vm-key root@3.27.63.123 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
+                                ssh -o StrictHostKeyChecking=no -i vm-key root@3.27.63.123 "echo '${deploying}' > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
                             """
                         }
                     }
@@ -36,5 +37,4 @@ pipeline{
 
                         // "docker rm -f api\n"+
                         // "docker rmi ${DOCKER_USERNAME}/nosh_now_api\n"+
-                        //git pull
-                        //docker image pull ${DOCKER_USERNAME}/nosh_now_apis
+                        
