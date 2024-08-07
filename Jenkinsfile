@@ -22,7 +22,7 @@ pipeline{
                         "docker-compose up -d"
                         sshagent (credentials: ['vm-key']) {
                             sh """
-                                ssh -o StrictHostKeyChecking=no -i vm-key ubuntu@52.63.154.28 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
+                                ssh -o StrictHostKeyChecking=no -i vm-key root@52.63.154.28 "echo \\\"${deploying}\\\" > deploy.sh && chmod +x deploy.sh && ./deploy.sh"
                             """
                         }
                     }
