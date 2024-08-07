@@ -1,6 +1,8 @@
 version: '3.8'
 
 
+
+
 services:
   db:
     image: mysql
@@ -18,7 +20,7 @@ services:
       timeout: 10s
       retries: 5
   migrate:
-    image: your_dockerhub_username/nosh_now_apis:latest
+    image: ${DOCKER_USERNAME}/nosh_now_apis
     entrypoint: ["dotnet", "ef", "database", "update"]
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -40,3 +42,5 @@ services:
       - ISSUER=${TOKEN_ISSUER}
       - AUDIENCE=${TOKEN_AUDIENCE}
       - KEY=${TOKEN_KEY}
+volumes:
+  mydb:
