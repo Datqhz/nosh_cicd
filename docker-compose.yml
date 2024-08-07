@@ -39,5 +39,5 @@ services:
         - ISSUER=${TOKEN_ISSUER}
         - AUDIENCE=${TOKEN_AUDIENCE}
         - KEY=${TOKEN_KEY}
-  volumes:
-    mydb:
+volumes:
+  mydb:
